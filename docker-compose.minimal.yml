@@ -1,0 +1,21 @@
+version: "3.8"
+
+# 最轻量版：仅 Ollama，适合只需要 API 的开发者
+# 启动命令：docker compose -f docker-compose.minimal.yml up -d
+# 访问：http://localhost:11434
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_ORIGINS=*
+      - OLLAMA_HOST=0.0.0.0
+
+volumes:
+  ollama_data:

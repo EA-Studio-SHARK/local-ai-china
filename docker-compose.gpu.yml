@@ -1,0 +1,70 @@
+version: "3.8"
+
+# GPU 加速版：需要 NVIDIA 显卡 + NVIDIA Container Toolkit
+# 安装 Toolkit：https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+# 启动命令：docker compose -f docker-compose.gpu.yml up -d
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_ORIGINS=*
+      - OLLAMA_HOST=0.0.0.0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:cuda
+    container_name: open-webui
+    restart: unless-stopped
+    depends_on:
+      - ollama
+    ports:
+      - "3000:8080"
+    volumes:
+      - open_webui_data:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_SECRET_KEY=change-this-secret-key
+      - DEFAULT_MODELS=deepseek-r1:14b
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  model-puller:
+    image: curlimages/curl:latest
+    container_name: model-puller
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "no"
+    command: >
+      sh -c "
+        echo '正在下载 DeepSeek-R1:14B 模型（约 9GB）...' &&
+        curl -X POST http://ollama:11434/api/pull -d '{\"name\":\"deepseek-r1:14b\"}' &&
+        echo '模型下载完成！'
+      "
+
+volumes:
+  ollama_data:
+  open_webui_data:
