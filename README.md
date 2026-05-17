@@ -201,7 +201,21 @@ A：参考上方「中国网络优化」章节，使用 ModelScope 下载。
 
 ---
 
-## 📬 联系与合作
+## � 相关项目
+
+> EA-Studio-SHARK 为中国开发者打造的 AI 工具生态：
+
+| 项目 | 简介 | Stars |
+|------|------|-------|
+| [china-hot-mcp](https://github.com/EA-Studio-SHARK/china-hot-mcp) | 让 Claude 实时获取微博/知乎/B站等平台热搜的 MCP 服务 | ⭐ |
+| [ai-morning-brief](https://github.com/EA-Studio-SHARK/ai-morning-brief) | Claude Code Skill：一键生成中英文双轨 AI 早报 | ⭐ |
+| [awesome-mcp-zh](https://github.com/EA-Studio-SHARK/awesome-mcp-zh) | 国内可用 MCP 服务精选，附完整配置示例 | ⭐ |
+| [ai-agent-guide](https://github.com/EA-Studio-SHARK/ai-agent-guide) | 从零上手 AI Agent 开发教程，含完整代码示例 | ⭐ |
+| [awesome-ai-tools-zh](https://github.com/EA-Studio-SHARK/awesome-ai-tools-zh) | 500+ AI 工具中文精选清单，每周更新 | ⭐ |
+
+---
+
+## �📬 联系与合作
 
 - 🚀 **企业私有化部署**：帮你在内网搭建完整 AI 环境
 - 🔧 **定制 AI 工作流**：基于本地模型的业务自动化
