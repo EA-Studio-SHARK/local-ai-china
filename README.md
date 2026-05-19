@@ -221,6 +221,20 @@ A：参考上方「中国网络优化」章节，使用 ModelScope 下载。
 - 🔧 **定制 AI 工作流**：基于本地模型的业务自动化
 - 📬 **Telegram**：[@ExploreAllStudio](https://t.me/ExploreAllStudio)
 
+
+---
+
+## 💬 加群交流
+
+正在维护 **「EA同学的 AI 实战圈」** 群：
+
+- 📰 每天 9:00 同步精选 AI 早报（国内+国际双轨）
+- 🛠️ 每周分享 Claude Code Skills / MCP 实战
+- 💡 工具选型、踩坑、咨询都可以群里问
+
+**加群**：知乎/掘金私信我「加群」即可，看到就发。
+
+
 ---
 
 <div align="center">
